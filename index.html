@@ -25,11 +25,13 @@
             --gradient-dark: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
         }
         
-        body {
+        html, body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
         
         /* Smooth scrolling */
@@ -287,7 +289,7 @@
         
         .problems-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
         
@@ -334,7 +336,7 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 3rem;
             margin-top: 4rem;
         }
@@ -520,6 +522,10 @@
         
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .nav-container, .hero-container, .section-container {
+                padding: 0 1rem;
+            }
+            
             .nav-links {
                 display: none;
             }
@@ -539,14 +545,21 @@
             
             .stats {
                 justify-content: center;
+                gap: 2rem;
             }
             
             .hero-visual {
                 margin-top: 3rem;
             }
             
-            .features-grid, .testimonials-grid {
+            .features-grid, .testimonials-grid, .problems-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .cta-buttons {
@@ -558,6 +571,38 @@
             
             .btn-white {
                 width: 100%;
+            }
+        }
+        
+        /* Additional mobile breakpoint for very small screens */
+        @media (max-width: 480px) {
+            .nav-container, .hero-container, .section-container {
+                padding: 0 0.5rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .problem-section, .solution-section, .how-it-works {
+                padding: 3rem 1rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .problems-grid, .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .feature-card, .problem-card {
+                padding: 1.5rem;
             }
         }
     </style>
