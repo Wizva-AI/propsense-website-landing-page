@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Leela Residences - Old Airport Road, Bangalore | Propsense</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .logo span {
+            display: inline-block;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .back-btn {
+            background: #1E7DFF;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #0056D2;
+        }
+
+        /* Hero */
+        .property-hero {
+            background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%);
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .hero-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            flex: 1;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            backdrop-filter: blur(10px);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-info {
+            flex: 1;
+        }
+
+        .property-category {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .property-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-location {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #1E7DFF;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1E7DFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .luxury-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #1f2937;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Configuration Table */
+        .config-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .config-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .config-table th {
+            background: #1E7DFF;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .config-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .config-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .config-table tr:hover {
+            background: #f9fafb;
+        }
+
+        /* Amenities Grid */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .amenity-icon {
+            font-size: 2rem;
+        }
+
+        .amenity-name {
+            font-weight: 500;
+        }
+
+        /* Specifications */
+        .spec-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .spec-category {
+            margin-bottom: 2rem;
+        }
+
+        .spec-category h3 {
+            font-size: 1.3rem;
+            color: #1E7DFF;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #E3F2FF;
+        }
+
+        .spec-item {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .spec-value {
+            color: #6b7280;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .property-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .spec-item {
+                grid-template-columns: 1fr;
+                gap: 0.3rem;
+            }
+        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: #fff; margin: 5% auto; padding: 0; border-radius: 16px; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: slideIn 0.3s; }
+        @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header { background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); color: white; padding: 2rem; border-radius: 16px 16px 0 0; }
+        .modal-header h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .modal-header p { opacity: 0.95; font-size: 1rem; }
+        .close { color: white; float: right; font-size: 2rem; font-weight: bold; cursor: pointer; line-height: 1; }
+        .close:hover { opacity: 0.8; }
+        .modal-body { padding: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1f2937; }
+        .form-group input { width: 100%; padding: 0.9rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus { outline: none; border-color: #1E7DFF; }
+        .submit-btn { width: 100%; background: #1E7DFF; color: white; padding: 1rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; }
+        .submit-btn:hover { background: #0056D2; }
+        .submit-btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/Propsense_logo.png" alt="Propsense.ai" style="height: 45px; display: block; position: relative; top: 5px;"> <span style="line-height: 45px;">Propsense.ai</span>
+                </a>
+                <a href="index.html" class="back-btn">← Back to Properties</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Property Hero -->
+    <section class="property-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image" style="background-image: url('images/Leela.webp');"></div>
+                <div class="hero-info">
+                    <span class="property-category">Ultra Luxury</span>
+                    <h1 class="property-title">Prestige Leela Residences</h1>
+                    <p class="property-location">📍 Kodihalli, Old Airport Road, East Bangalore</p>
+                    <div class="property-price">₹8 Cr onwards</div>
+                    <a href="#" class="cta-button">🤖 Speak to AI Advisor Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">3 Acres</div>
+                    <div class="stat-label">Land Area</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">88 Units</div>
+                    <div class="stat-label">Total Units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">~75%</div>
+                    <div class="stat-label">Open Space</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3 Towers</div>
+                    <div class="stat-label">Number of Blocks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2B+G+10</div>
+                    <div class="stat-label">Structure</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">Ready to Move</div>
+                    <div class="stat-label">Status</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Description -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">About Prestige Leela Residences</h2>
+            <span class="luxury-badge">✨ INSPIRED BY MYSORE ROYAL PALACE</span>
+            <p class="description">
+                Prestige Leela Residences is a fully air-conditioned ultra-luxury complex set amidst lush landscaped gardens, in a style of architecture reminiscent of the Mysore Royal Palace. The 88-residence development is centrally located on Old Airport Road, Bangalore, and has been tastefully designed to echo luxury blended with regal ambience.
+            </p>
+            <p class="description">
+                These 88 units include 4 palatial duplex penthouses that boast intricate detailing and ornate features such as domes, arches, and decorated ceilings. The ten-storeyed building is truly a one-of-its-kind lifestyle experience, emulating luxuriant exoticism through awe-inspiring features such as overhanging eaves, vaulted roofs, and domed chhatris.
+            </p>
+            <p class="description">
+                <strong>Connectivity:</strong> Prime location with proximity to landmarks like KGA (Karnataka Golf Association) and Manipal Hospital.
+            </p>
+            <div class="spec-list">
+                <div class="spec-item">
+                    <div class="spec-label">RERA Number</div>
+                    <div class="spec-value">PRM/KA/RERA/1251/446/PR/170824/000077</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Builder</div>
+                    <div class="spec-value">Prestige Group</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Category</div>
+                    <div class="spec-value">Ultra Luxury - Ready to Move</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unit Configurations -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Ultra-Luxury Unit Configurations</h2>
+            <div class="config-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Configuration</th>
+                            <th>Carpet Area</th>
+                            <th>Super Built-Up Area</th>
+                            <th>Price Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4 BHK</td>
+                            <td>Type A</td>
+                            <td>2,124 sq.ft.</td>
+                            <td>2,920 sq.ft.</td>
+                            <td>₹8 Cr onwards</td>
+                        </tr>
+                        <tr>
+                            <td>4 BHK</td>
+                            <td>Type B</td>
+                            <td>2,217 sq.ft.</td>
+                            <td>3,027 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>4 BHK</td>
+                            <td>Type C</td>
+                            <td>2,244 sq.ft.</td>
+                            <td>3,039 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>4 BHK</td>
+                            <td>Type D, E</td>
+                            <td>2,221 - 2,222 sq.ft.</td>
+                            <td>3,046 - 3,053 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>4 BHK (Large)</td>
+                            <td>Type F</td>
+                            <td>2,603 sq.ft.</td>
+                            <td>3,627 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>4 BHK (Large)</td>
+                            <td>Type G, H, J</td>
+                            <td>2,755 - 2,826 sq.ft.</td>
+                            <td>3,796 - 3,849 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>Duplex Penthouse</td>
+                            <td>PH-1 (2 Levels)</td>
+                            <td>4,256 sq.ft.</td>
+                            <td>5,913 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                        <tr>
+                            <td>Duplex Penthouse</td>
+                            <td>PH-2 (2 Levels)</td>
+                            <td>4,977 sq.ft.</td>
+                            <td>6,879 sq.ft.</td>
+                            <td>On Request</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Features -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Premium Features & Inclusions</h2>
+            <div class="spec-list">
+                <div class="spec-category">
+                    <h3>🏢 Fully Furnished Luxury</h3>
+                    <div class="spec-item">
+                        <div class="spec-label">Kitchen Appliances</div>
+                        <div class="spec-value">Hob, Hood, Washing Machine, Dryer, Dish Washer, Refrigerator, Geyser, and Oven - All of reputed brands</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Kitchen Fittings</div>
+                        <div class="spec-value">Under counter and overhead cabinets with pull-out systems, double bowl sink in utility, single bowl in kitchen</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Bathroom Fixtures</div>
+                        <div class="spec-value">Geysers, mirrors, and accessories in all toilets. Master toilet with shower cubicle and vanity cabinets</div>
+                    </div>
+                </div>
+
+                <div class="spec-category">
+                    <h3>❄️ Climate Control</h3>
+                    <div class="spec-item">
+                        <div class="spec-label">Air Conditioning</div>
+                        <div class="spec-value">Ductable Centralized VRV Air Conditioning System covering the entire unit with designated HVAC area</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Power Backup</div>
+                        <div class="spec-value">100% DG Backup with BESCOM power supply</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Exclusive Lifestyle Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <div class="amenity-icon">🏊</div>
+                    <div class="amenity-name">Swimming Pool</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">💪</div>
+                    <div class="amenity-name">Modern Gymnasium</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🧘</div>
+                    <div class="amenity-name">Health Club & Wellness</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🎉</div>
+                    <div class="amenity-name">Indoor & Outdoor Party Hall</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🎱</div>
+                    <div class="amenity-name">Billiards Room</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🎬</div>
+                    <div class="amenity-name">Mini Theatre</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🎮</div>
+                    <div class="amenity-name">Indoor Games Area</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🛒</div>
+                    <div class="amenity-name">Supermarket Space</div>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">💇</div>
+                    <div class="amenity-name">Unisex Parlour Space</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Premium Building Specifications</h2>
+            <div class="spec-list">
+                <div class="spec-category">
+                    <h3>Flooring & Finishes</h3>
+                    <div class="spec-item">
+                        <div class="spec-label">Bedrooms</div>
+                        <div class="spec-value">Engineered Laminated Wooden Flooring in all bedrooms</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Living & Dining</div>
+                        <div class="spec-value">Imported Marble/Granite/Engineered Stone in foyer, living, dining, and internal staircases</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Balconies</div>
+                        <div class="spec-value">Master bedroom balcony with vitrified tiles, Living/Dining decks in external grade solid wood flooring</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Toilets</div>
+                        <div class="spec-value">Marble/Granite/Engineered Stone on floor and walls up to ceiling</div>
+                    </div>
+                </div>
+
+                <div class="spec-category">
+                    <h3>Doors & Windows</h3>
+                    <div class="spec-item">
+                        <div class="spec-label">Entrance Door</div>
+                        <div class="spec-value">8 feet high opening with Teak wood frame and paneled double shutter with architraves</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Bedroom Doors</div>
+                        <div class="spec-value">8 feet height with Teak wood frames, architraves, and superior quality hardware</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Windows</div>
+                        <div class="spec-value">Powder coated aluminum frames with clear glass and mosquito mesh shutters</div>
+                    </div>
+                </div>
+
+                <div class="spec-category">
+                    <h3>Structure & Lobby</h3>
+                    <div class="spec-item">
+                        <div class="spec-label">Framework</div>
+                        <div class="spec-value">RCC Framed Structure with RCC Sheer Walls</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Main Lobby</div>
+                        <div class="spec-value">Elegant ground floor lobby with Imported Marble/Granite flooring</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">All Lobbies</div>
+                        <div class="spec-value">Granite/Marble/Engineered Stone flooring and lift cladding with veneered false ceiling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="content-section">
+        <div class="container">
+            <div class="cta-box">
+                <h3>Experience Royal Luxury - Take a Virtual Tour</h3>
+                <p>Explore this palace-inspired ultra-luxury residence with our AI advisor. View the premium finishes, ask about amenities, and experience the regal architecture - all from your home.</p>
+                <a href="#" class="cta-button">🤖 Start Virtual Tour Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Propsense.ai</h3>
+                    <p style="color:#9ca3af;">Your AI companion & advisor for finding the perfect home in Bangalore through guided immersive spatial tours.</p>
+                    <p style="color:#9ca3af; margin-top: 1rem; font-size: 0.85rem;">Wizva AI Innovations Pvt Ltd</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:hello@propsense.ai">hello@propsense.ai</a></li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <a href="tel:+916360609774">+91 6360609774</a>
+                            <a href="https://wa.me/916360609774" target="_blank" style="display: inline-flex; align-items: center; background: #25D366; color: white; padding: 0.3rem 0.6rem; border-radius: 5px; text-decoration: none; font-size: 0.85rem;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right: 0.3rem;">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                                WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #374151; padding-top: 1.5rem; margin-top: 2rem;">
+                <div style="color:#9ca3af; font-size: 0.85rem; margin-bottom: 1rem;">
+                    <p><strong>RERA:</strong> PRM/KA/RERA/1251/309/AG/250920/006213</p>
+                    <p><strong>GST:</strong> 29AAECW2099L1ZM</p>
+                    <p><strong>CIN:</strong> U68200KA2025PTC206668</p>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2025 Propsense. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <!-- Modal Popup -->
+    <div id="ctaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>You're One Step Away!</h2>
+                <p>Experience our virtual tour and find your dream home</p>
+            </div>
+            <div class="modal-body">
+                <form id="ctaForm">
+                    <input type="hidden" name="access_key" value="9c22a430-f272-4d0e-96d7-dd2b274b5600">
+                    <div class="form-group">
+                        <label for="userName">Name *</label>
+                        <input type="text" id="userName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number *</label>
+                        <input type="tel" id="userPhone" name="phone" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s\-()]{10,15}">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email *</label>
+                        <input type="email" id="userEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit & Start Virtual Tour</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('ctaModal');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        const form = document.getElementById('ctaForm');
+        const ctaButtons = document.querySelectorAll('a[href="#"]');
+        
+        ctaButtons.forEach(button => {
+            if (button.textContent.includes('Virtual Tour') || button.textContent.includes('AI Advisor')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+        });
+        
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Thank you! Your request has been submitted. We will contact you shortly.');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    form.reset();
+                } else {
+                    alert('Error submitting form. Please try again or contact us directly at hello@propsense.ai');
+                }
+            } catch (error) {
+                alert('Error submitting form. Please try again or contact us directly at hello@propsense.ai');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit & Start Virtual Tour';
+        });
+    </script>
+</body>
+</html>

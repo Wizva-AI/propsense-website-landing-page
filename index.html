@@ -3,665 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propsense.ai - Your AI Broker for Finding Your Dream Home</title>
+    <title>Propsense - AI-Powered Virtual Property Tours in Bangalore</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #3b82f6;
-            --accent: #fbbf24;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --gray: #64748b;
-            --gray-light: #94a3b8;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #1d4ed8 100%);
-            --gradient-dark: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
-        }
-        
-        html, body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 60%;
-            height: 150%;
-            background: var(--gradient);
-            opacity: 0.1;
-            border-radius: 50%;
-            filter: blur(100px);
-        }
-        
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-        
-        .gradient-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-content p {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-bottom: 1.5rem; /* Reduced from 3rem to move stats up */
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 2px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: -1.5rem; /* Move stats up slightly */
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-mockup {
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            background: var(--gradient);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-        
-        .mockup-content {
-            position: absolute;
-            inset: 20px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-        
-        .voice-wave {
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            margin: auto;
-        }
-        
-        .wave-bar {
-            width: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-            animation: wave 1s ease-in-out infinite;
-        }
-        
-        .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
-        .wave-bar:nth-child(2) { height: 40px; animation-delay: 0.1s; }
-        .wave-bar:nth-child(3) { height: 30px; animation-delay: 0.2s; }
-        .wave-bar:nth-child(4) { height: 50px; animation-delay: 0.3s; }
-        .wave-bar:nth-child(5) { height: 25px; animation-delay: 0.4s; }
-        
-        @keyframes wave {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.5); }
-        }
-        
-        /* Problem Section */
-        .problem-section {
-            padding: 5rem 2rem;
-            background: white;
-        }
-        
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .section-header p {
-            font-size: 1.25rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .problem-card {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .problem-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .problem-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        .problem-stat {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .problem-card p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        /* Solution Section */
-        .solution-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-list {
-            list-style: none;
-        }
-        
-        .feature-list li {
-            padding: 0.5rem 0;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .feature-list li::before {
-            content: "✓";
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* How It Works */
-        .how-it-works {
-            padding: 5rem 2rem;
-            background: white;
-        }
-        
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr); /* Always 5 columns for 5 steps */
-            gap: 2rem;
-            margin-top: 4rem;
-            position: relative;
-        }
-        
-        .step {
-            text-align: center;
-            position: relative;
-            padding: 2rem;
-        }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 auto 1.5rem;
-        }
-        
-        .step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .step p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 5rem 2rem;
-            background: var(--gradient-dark);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-        
-        .cta-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .btn-white {
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-white:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem 2rem;
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h4 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-section p, .footer-section a {
-            color: var(--gray-light);
-            text-decoration: none;
-            line-height: 1.8;
-        }
-        
-        .footer-section a:hover {
-            color: white;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-light);
-        }
-        
-        /* Mobile Responsive */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1f2937; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 0.5rem; line-height: 1; }
+        .logo span { display: inline-block; }
+        .logo-icon { width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; font-weight: 700; transition: opacity 0.3s ease; }
+        nav a:hover { opacity: 0.7; }
+        .hero { background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); color: white; padding: 6rem 0; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .cta-button { display: inline-block; background: white; color: #1E7DFF; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .voice-example { margin-top: 2rem; padding: 1rem 2rem; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px); display: inline-block; font-style: italic; }
+        .video-section { padding: 5rem 0; background: white; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #1f2937; }
+        .section-subtitle { text-align: center; color: #6b7280; max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem; }
+        .video-container { max-width: 900px; margin: 2rem auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(30,125,255,0.2); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .properties { padding: 5rem 0; background: #f9fafb; }
+        .carousel-container { position: relative; margin-top: 3rem; }
+        .carousel-wrapper { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .property-card { width: calc(33.333% - 14px); max-width: 380px; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .property-card:hover { transform: scale(1.02); }
+        .property-image { width: 100%; height: 250px; background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; }
+        .property-content { padding: 2rem; }
+        .property-category { display: inline-block; padding: 0.3rem 1rem; background: #E3F2FF; color: #1E7DFF; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+        .property-title { font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; }
+        .property-location { color: #6b7280; margin-bottom: 1rem; }
+        .property-details { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; padding: 1rem 0; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; }
+        .property-detail { flex: 1; }
+        .property-detail-label { font-size: 0.85rem; color: #6b7280; margin-bottom: 0.3rem; }
+        .property-detail-value { font-weight: 600; color: #1f2937; }
+        .property-price { font-size: 1.5rem; font-weight: 700; color: #1E7DFF; margin-bottom: 1rem; text-align: center; }
+        .property-btn { display: block; width: 100%; background: #1E7DFF; color: white; padding: 0.9rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.3s; text-align: center; text-decoration: none; }
+        .property-btn:hover { background: #0056D2; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: white; border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10; font-size: 1.5rem; }
+        .carousel-btn:hover { background: #1E7DFF; color: white; }
+        .carousel-btn.prev { left: 0; }
+        .carousel-btn.next { right: 0; }
+        .carousel-dots { display: flex; justify-content: center; gap: 10px; margin-top: 2rem; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d5db; cursor: pointer; transition: all 0.3s; }
+        .dot.active { background: #1E7DFF; width: 30px; border-radius: 6px; }
+        .features { padding: 5rem 0; background: white; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .feature-card { text-align: center; padding: 2rem; }
+        .feature-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #1f2937; }
+        .feature-card p { color: #6b7280; line-height: 1.7; }
+        .team { padding: 5rem 0; background: #f9fafb; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .team-member { background: white; border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .team-member:hover { transform: translateY(-5px); }
+        .team-photo { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: white; overflow: hidden; }
+        .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .team-name { font-size: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; }
+        .team-role { color: #1E7DFF; font-weight: 600; margin-bottom: 1rem; }
+        .team-bio { color: #6b7280; line-height: 1.6; margin-bottom: 1.5rem; }
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #0077B5; color: white; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+        .linkedin-btn:hover { background: #005885; }
+        .final-cta { padding: 5rem 0; background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); color: white; text-align: center; }
+        .final-cta h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .final-cta p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; }
+        footer { background: #0f172a; color: white; padding: 3rem 0 1rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { margin-bottom: 1rem; font-size: 1.2rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section a { color: #9ca3af; text-decoration: none; transition: color 0.3s; display: block; margin-bottom: 0.5rem; }
+        .footer-section a:hover { color: white; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #374151; color: #9ca3af; }
+        @media (max-width: 1024px) { .property-card { width: calc(50% - 10px); } }
         @media (max-width: 768px) {
-            .nav-container, .hero-container, .section-container {
-                padding: 0 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .stats {
-                justify-content: center;
-                gap: 2rem;
-            }
-            
-            .hero-visual {
-                margin-top: 3rem;
-            }
-            
-            .features-grid, .testimonials-grid, .problems-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .steps-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-            
-            .btn-white {
-                width: 100%;
-            }
+            .hero h1 { font-size: 2rem; }
+            .property-card { width: 100%; max-width: 100%; }
         }
-        
-        /* Additional mobile breakpoint for very small screens */
-        @media (max-width: 480px) {
-            .nav-container, .hero-container, .section-container {
-                padding: 0 0.5rem;
-            }
-            
-            .hero {
-                padding: 6rem 1rem 3rem;
-            }
-            
-            .problem-section, .solution-section, .how-it-works {
-                padding: 3rem 1rem;
-            }
-            
-            .cta-section {
-                padding: 3rem 1rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .problems-grid, .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .feature-card, .problem-card {
-                padding: 1.5rem;
-            }
-        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background-color: #fff; margin: 5% auto; padding: 0; border-radius: 16px; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: slideIn 0.3s; }
+        @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header { background: linear-gradient(135deg, #1E7DFF 0%, #0056D2 100%); color: white; padding: 2rem; border-radius: 16px 16px 0 0; }
+        .modal-header h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .modal-header p { opacity: 0.95; font-size: 1rem; }
+        .close { color: white; float: right; font-size: 2rem; font-weight: bold; cursor: pointer; line-height: 1; }
+        .close:hover { opacity: 0.8; }
+        .modal-body { padding: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1f2937; }
+        .form-group input { width: 100%; padding: 0.9rem; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus { outline: none; border-color: #1E7DFF; }
+        .submit-btn { width: 100%; background: #1E7DFF; color: white; padding: 1rem; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; }
+        .submit-btn:hover { background: #0056D2; }
+        .submit-btn:disabled { background: #9ca3af; cursor: not-allowed; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <img src="images/Propsense_logo.png" alt="Propsense.ai" style="height: 45px; vertical-align: middle;"> Propsense.ai
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/Propsense_logo.png" alt="Propsense.ai" style="height: 45px; display: block; position: relative; top: 5px;"> <span style="line-height: 45px;">Propsense.ai</span>
+                </div>
+                <nav><ul>
+                    <li><a href="#properties">Properties</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul></nav>
             </div>
-            <ul class="nav-links">
-                <li><a href="#problem">Problem</a></li>
-                <li><a href="#solution">Solution</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="mailto:sk@wizva.ai" class="btn-primary">Get In Touch</a></li>
-            </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Your <span class="gradient-text">AI Broker</span> for Finding Your Dream Home</h1>
-                <p>Stop the 6-12 month property search marathon.<br>
-Let Propsense, your AI companion, guide you through immersive & informative spatial tours with natural conversations in your language.</p>
-                <div class="hero-buttons">
-                    
-                </div>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-value">70%</div>
-                        <div class="stat-label">Faster Decisions</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">₹50K</div>
-                        <div class="stat-label">Average Savings</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">10+</div>
-                        <div class="stat-label">Languages</div>
-                    </div>
+        <div class="container">
+            <h1>Tour Your Dream Home in Bangalore with AI Advisor<br>Virtually, Before You Visit</h1>
+            <p>Skip the traffic and wasted weekends. Experience immersive 3D property tours with your AI advisor who speaks your language. Find the perfect home in Bangalore, faster and smarter.</p>
+            <a href="#properties" class="cta-button">Explore Properties Now</a>
+            <div class="voice-example">💬 "Show me 3BHK apartments in Whitefield under ₹2 Crore"</div>
+        </div>
+    </section>
+
+    <section id="demo" class="video-section">
+        <div class="container">
+            <h2 class="section-title">See How It Works</h2>
+            <p class="section-subtitle">Watch how you can tour properties virtually with our AI advisor, ask questions in real-time, and make informed decisions, all from the comfort of your home.</p>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/e01b88e0JUY" title="Propsense Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-mockup">
-                    <div class="mockup-content">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <h3 style="color: var(--dark); margin-bottom: 10px;">Hi! I'm Propsense 👋</h3>
-                            <p style="color: var(--gray); font-size: 0.9rem;">Say "Show me 3BHK flats in Koramangala"</p>
+        </div>
+    </section>
+
+    <section id="properties" class="properties">
+        <div class="container">
+            <h2 class="section-title">Featured Properties in Bangalore</h2>
+            <p class="section-subtitle">Explore premium properties in Whitefield and Old Airport Road. Take a virtual tour with your AI advisor today.</p>
+
+            <div class="carousel-container" style="padding: 0;">
+                <div class="carousel-wrapper" id="carouselWrapper" style="justify-content: center;">
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('images/Glenbrook.webp'); background-size: cover; background-position: center;"></div>
+                        <div class="property-content">
+                            <span class="property-category">Premium</span>
+                            <h3 class="property-title">Prestige Glenbrook</h3>
+                            <p class="property-location">📍 Whitefield, Nallurhalli, Bengaluru</p>
+                            <div class="property-details">
+                                <div class="property-detail"><div class="property-detail-label">Configuration</div><div class="property-detail-value">2, 3, 4 BHK</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Area</div><div class="property-detail-value">1067-2928 sqft</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Possession</div><div class="property-detail-value">Dec 2027</div></div>
+                            </div>
+                            <div class="property-price">₹1.74 Cr onwards</div>
+                            <a href="#" class="property-btn" data-property="prestige-glenbrook.html">🤖 Speak to AI Advisor</a>
                         </div>
-                        <div class="voice-wave">
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('images/Leela.webp'); background-size: cover; background-position: center;"></div>
+                        <div class="property-content">
+                            <span class="property-category">Ultra Luxury</span>
+                            <h3 class="property-title">Prestige Leela Residences</h3>
+                            <p class="property-location">📍 Kodihalli, Old Airport Road</p>
+                            <div class="property-details">
+                                <div class="property-detail"><div class="property-detail-label">Configuration</div><div class="property-detail-value">4 BHK, Penthouse</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Area</div><div class="property-detail-value">2920-6879 sqft</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Status</div><div class="property-detail-value">Ready to Move</div></div>
+                            </div>
+                            <div class="property-price">₹8 Cr onwards</div>
+                            <a href="#" class="property-btn" data-property="prestige-leela-residences.html">🤖 Speak to AI Advisor</a>
+                        </div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('images/PineForest.webp'); background-size: cover; background-position: center;"></div>
+                        <div class="property-content">
+                            <span class="property-category">New Launch</span>
+                            <h3 class="property-title">Prestige Pine Forest</h3>
+                            <p class="property-location">📍 Whitefield, Bengaluru</p>
+                            <div class="property-details">
+                                <div class="property-detail"><div class="property-detail-label">Configuration</div><div class="property-detail-value">1, 2, 3 BHK</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Area</div><div class="property-detail-value">722-1550 sqft</div></div>
+                                <div class="property-detail"><div class="property-detail-label">Possession</div><div class="property-detail-value">Dec 2028</div></div>
+                            </div>
+                            <div class="property-price">₹3.58 Cr onwards</div>
+                            <a href="#" class="property-btn" data-property="prestige-pine-forest.html">🤖 Speak to AI Advisor</a>
                         </div>
                     </div>
                 </div>
@@ -669,193 +198,229 @@ Let Propsense, your AI companion, guide you through immersive & informative spat
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section id="problem" class="problem-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>The <span class="gradient-text">Broken Journey</span> of Home Buying in India</h2>
-                <p>Every home buyer faces these painful realities</p>
-            </div>
-            <div class="problems-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3>Endless Time Waste</h3>
-                    <div class="problem-stat">6-12 months</div>
-                    <p>Average time spent searching for the perfect home, with countless weekends lost to property visits</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🚗</div>
-                    <h3>Exhausting Travel</h3>
-                    <div class="problem-stat">200+ km</div>
-                    <p>Average distance traveled before making a decision, visiting 8-12 properties physically</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">💸</div>
-                    <h3>Hidden Costs</h3>
-                    <div class="problem-stat">₹50,000+</div>
-                    <p>Money spent on travel, time off work, and multiple site visits before finding the right home</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">😰</div>
-                    <h3>Information Overload</h3>
-                    <div class="problem-stat">8+ platforms</div>
-                    <p>Juggling multiple property portals, brokers, and WhatsApp groups with conflicting information</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🤝</div>
-                    <h3>Trust Issues</h3>
-                    <div class="problem-stat">Misaligned Incentives</div>
-                    <p>Brokers steer buyers toward higher-commission listings with pushy sales tactics, undermining trust</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">👨‍👩‍👧‍👦</div>
-                    <h3>Family Coordination</h3>
-                    <div class="problem-stat">5-6 people</div>
-                    <p>Average decision makers involved, making scheduling and consensus building a nightmare</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section id="solution" class="solution-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Meet <span class="gradient-text">Propsense</span>, Your AI Home-Buying Companion</h2>
-                <p>Experience properties like never before with voice-guided Spatial tours</p>
-            </div>
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why New Home Buyers in Bangalore Choose Propsense</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎙️</div>
-                    <h3>Voice-First Discovery</h3>
-                    <p>Just speak naturally in your language. Propsense understands context and remembers your preferences.</p>
-                    <ul class="feature-list">
-                        <li>10+ Indian languages supported</li>
-                        <li>Natural conversation flow</li>
-                        <li>Contextual understanding</li>
-                        <li>Family preference tracking</li>
-                    </ul>
+                <div class="feature-card"><div class="feature-icon">🗣️</div><h3>Speak Your Language</h3><p>Communicate naturally in Kannada, Hindi, English, or any language. Our AI understands context and remembers your preferences.</p></div>
+                <div class="feature-card"><div class="feature-icon">🏡</div><h3>Virtual 3D Tours</h3><p>Walk through properties from anywhere. Experience every room, view, and detail before scheduling a single physical visit.</p></div>
+                <div class="feature-card"><div class="feature-icon">⚡</div><h3>Instant Answers</h3><p>Ask about Vastu, amenities, pricing, loan options, or nearby schools. Get accurate answers immediately.</p></div>
+                <div class="feature-card"><div class="feature-icon">👨‍👩‍👧‍👦</div><h3>Tour with Family</h3><p>Invite family members from anywhere in India to join virtual tours together. Make decisions collaboratively in real-time.</p></div>
+                <div class="feature-card"><div class="feature-icon">📊</div><h3>Smart Comparisons</h3><p>Compare properties side-by-side with data-driven insights on pricing, amenities, connectivity, and investment potential.</p></div>
+                <div class="feature-card"><div class="feature-icon">✅</div><h3>Verified & Transparent</h3><p>Every detail verified, every document checked. No hidden surprises, no pushy sales tactics - just honest information.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title">Meet the Founding Team</h2>
+            <p class="section-subtitle">Built by a founding team with ISB/IIT-KGP alum and leaders from BharatMatrimony, WazirX, and Exotel : scaled to millions ; early team at a Flipkart-acquired startup</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo"><img src="images/Atul.png" alt="Atul Anand"></div>
+                    <h3 class="team-name">Atul Anand</h3>
+                    <p class="team-role">Co-Founder & COO</p>
+                    <p class="team-bio">IIT Kharagpur | 10+ years experience in tech | Previously at leading consumer products, GTM, and UX companies</p>
+                    <a href="https://www.linkedin.com/in/atulanandr/" target="_blank" class="linkedin-btn"><span>🔗</span> Connect on LinkedIn</a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
-                    <h3>Immersive Spatial Tours</h3>
-                    <p>Take immersive Spatial tours with Propsense guiding you, pointing out features that match your preferences.</p>
-                    <ul class="feature-list">
-                        <li>Photorealistic quality</li>
-                        <li>Measure any distance</li>
-                        <li>Day/night views</li>
-                        <li>Spatial furniture placement</li>
-                    </ul>
+                <div class="team-member">
+                    <div class="team-photo"><img src="images/Sreejith.png" alt="Sreejith K"></div>
+                    <h3 class="team-name">Sreejith K</h3>
+                    <p class="team-role">Co-Founder & CEO</p>
+                    <p class="team-bio">Combined 10+ years experience in XR & AI | Built 9+ products spanning across Agentic AI, XR tech to Real Estate SaaS</p>
+                    <a href="https://www.linkedin.com/in/sreejith-karumanaghat/" target="_blank" class="linkedin-btn"><span>🔗</span> Connect on LinkedIn</a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Powered Insights</h3>
-                    <p>Get instant answers about everything from Vastu compliance to investment potential.</p>
-                    <ul class="feature-list">
-                        <li>Price trend analysis</li>
-                        <li>Neighborhood insights</li>
-                        <li>ROI calculations</li>
-                        <li>Legal compliance check</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
-                    <h3>Family Collaboration</h3>
-                    <p>Tour together even when apart. Everyone can join from their location.</p>
-                    <ul class="feature-list">
-                        <li>Multi-user tours</li>
-                        <li>Shared annotations</li>
-                        <li>Recorded sessions</li>
-                        <li>Consensus tracking</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Smart Comparisons</h3>
-                    <p>Compare properties side-by-side with data-driven recommendations.</p>
-                    <ul class="feature-list">
-                        <li>Feature comparison</li>
-                        <li>Lifestyle matching</li>
-                        <li>Investment analysis</li>
-                        <li>Pros & cons summary</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Trust & Transparency</h3>
-                    <p>Every property verified, every claim validated, every document checked.</p>
-                    <ul class="feature-list">
-                        <li>RERA verification</li>
-                        <li>Developer track record</li>
-                        <li>Real buyer reviews</li>
-                        <li>Legal clearance status</li>
-                    </ul>
+                <div class="team-member">
+                    <div class="team-photo"><img src="images/Siddharth.png" alt="Siddharth Pai"></div>
+                    <h3 class="team-name">Siddharth Pai</h3>
+                    <p class="team-role">Co-Founder & CTO</p>
+                    <p class="team-bio">10+ years building large-scale platforms | Deep expertise in AR & AI | Developed new technologies and architected cutting-edge systems</p>
+                    <a href="https://www.linkedin.com/in/siddharthspai/" target="_blank" class="linkedin-btn"><span>🔗</span> Connect on LinkedIn</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Your 5-Step Journey to <span class="gradient-text">Dream Home</span></h2>
-                <p>From search to purchase, we’re with you at every step</p>
-            </div>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Tell Propsense Your Needs</h3>
-                    <p>Speak naturally about your dream home. Budget, location, size - share everything in your language.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Explore Properties Spatially</h3>
-                    <p>Take immersive Spatial tours with Propsense guiding you, pointing out features that match your preferences.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Smart Insights</h3>
-                    <p>Ask anything - from price trends to school distances. Get instant, accurate answers to make informed decisions.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Visit Only Your Top Choices</h3>
-                    <p>Shortlist your favorites and schedule just 1-2 physical visits to the properties you truly want to experience in person—saving time, energy, and hassle.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3>Book with Confidence</h3>
-                    <p>Found your dream home? Book instantly with verified documentation and transparent pricing.</p>
-                </div>
-            </div>
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Find Your Home in Bangalore?</h2>
+            <p>Join thousands of smart home buyers using AI-powered virtual tours. Your dream property is just a conversation away.</p>
+            <a href="#properties" class="cta-button">Start Virtual Tour Now</a>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="section-container">
-            <div class="cta-content">
-                <h2>Ready to Find Your Dream Home?</h2>
-                <p>Join the Spatial AI revolution in real estate. Your perfect home is just a conversation away.</p>
-                <div class="cta-buttons">
-                    <a href="mailto:sk@wizva.ai" class="btn-primary">Get In Touch</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Propsense.ai</h4>
-                <p>A spatially intelligent full stack AI Broker that transforms the home buying experience into an immersive, multimodal virtual tour</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Propsense.ai</h3>
+                    <p style="color:#9ca3af;">Your AI companion & advisor for finding the perfect home in Bangalore through guided immersive spatial tours.</p>
+                    <p style="color:#9ca3af; margin-top: 1rem; font-size: 0.85rem;">Wizva AI Innovations Pvt Ltd</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:hello@propsense.ai">hello@propsense.ai</a></li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <a href="tel:+916360609774">+91 6360609774</a>
+                            <a href="https://wa.me/916360609774" target="_blank" style="display: inline-flex; align-items: center; background: #25D366; color: white; padding: 0.3rem 0.6rem; border-radius: 5px; text-decoration: none; font-size: 0.85rem;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right: 0.3rem;">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                                WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Propsense.ai. All rights reserved. | Revolutionizing real estate, one voice at a time.</p>
+            <div style="border-top: 1px solid #374151; padding-top: 1.5rem; margin-top: 2rem;">
+                <div style="color:#9ca3af; font-size: 0.85rem; margin-bottom: 1rem;">
+                    <p><strong>RERA:</strong> PRM/KA/RERA/1251/309/AG/250920/006213</p>
+                    <p><strong>GST:</strong> 29AAECW2099L1ZM</p>
+                    <p><strong>CIN:</strong> U68200KA2025PTC206668</p>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2025 Propsense. All rights reserved.</p></div>
         </div>
     </footer>
+
+    <!-- Modal Popup -->
+    <div id="ctaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>You're One Step Away!</h2>
+                <p>Experience our virtual tour and find your dream home</p>
+            </div>
+            <div class="modal-body">
+                <form id="ctaForm">
+                    <input type="hidden" name="access_key" value="9c22a430-f272-4d0e-96d7-dd2b274b5600">
+                    <div class="form-group">
+                        <label for="userName">Name *</label>
+                        <input type="text" id="userName" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number *</label>
+                        <input type="tel" id="userPhone" name="phone" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s\-()]{10,15}">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email *</label>
+                        <input type="email" id="userEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <button type="submit" class="submit-btn">Submit & Start Virtual Tour</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#properties' || href === '#demo' || href === '#features' || href === '#team') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('ctaModal');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        const form = document.getElementById('ctaForm');
+
+        // Handle all CTA buttons - open modal
+        const allCtaButtons = document.querySelectorAll('.cta-button, .property-btn');
+        console.log('Found CTA buttons:', allCtaButtons.length);
+        allCtaButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Button clicked, opening modal');
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Make property cards clickable to navigate to property pages
+        const propertyCards = document.querySelectorAll('.property-card');
+        propertyCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                // Don't navigate if clicking on the button (button opens modal)
+                if (e.target.closest('.property-btn')) {
+                    return;
+                }
+                // Get the property page URL from the button's data attribute
+                const button = this.querySelector('.property-btn');
+                const propertyPage = button.getAttribute('data-property');
+                if (propertyPage) {
+                    window.location.href = propertyPage;
+                }
+            });
+        });
+
+        // Close modal when X is clicked
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Handle form submission with Web3Forms
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Thank you! Your request has been submitted. We will contact you shortly.');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    form.reset();
+                } else {
+                    alert('Error submitting form. Please try again or contact us directly at hello@propsense.ai');
+                }
+            } catch (error) {
+                alert('Error submitting form. Please try again or contact us directly at hello@propsense.ai');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit & Start Virtual Tour';
+        });
+    </script>
 </body>
-</html> 
+</html>
