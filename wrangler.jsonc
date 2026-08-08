@@ -1,7 +1,9 @@
 {
   "name": "propsense-landing-page",
+  "main": "src/index.js",
   "compatibility_date": "2025-09-15",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
   }
 }
