@@ -1,5 +1,9 @@
 {
-  "name": "propsense-landing-page",
+  // Must match the deployed Worker that propsense.ai + www are bound to.
+  // The repo previously said "propsense-landing-page" (no "website"), which would
+  // have deployed a brand-new unrouted Worker while the live domain kept serving
+  // the old code — a success message and no actual change.
+  "name": "propsense-website-landing-page",
   "main": "src/index.js",
   "compatibility_date": "2025-09-15",
   "assets": {

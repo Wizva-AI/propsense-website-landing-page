@@ -56,14 +56,30 @@ Slack *and* the team's WhatsApp group. Without a limit, anyone who finds the URL
 can spam both. This cannot be done in code — a per-isolate counter does not hold
 across Cloudflare's Workers isolates — so it is a dashboard rule.
 
-Cloudflare dashboard → **propsense.ai** (the zone, not the Worker) →
-**Security → WAF → Rate limiting rules → Create rule**:
+**Already applied** (2026-08-08) as rule `lead-intake-limit` in the zone's
+`http_ratelimit` phase — 5 requests per 10s per IP+colo, block for 10s.
+Verified firing: a 12-request burst returns 429, and recovers after the timeout.
 
-- **Name:** `lead-intake-limit`
-- **If incoming requests match:** `URI Path` `equals` `/api/lead`
-- **Characteristics:** `IP with NAT support` (the default)
-- **Rate:** `5` requests per `10 minutes`
-- **Then:** `Block` for `1 hour`
+Those numbers are **not** the ones you'd choose — they are the only ones the
+zone's **Free** plan permits. The API rejects anything else outright:
+
+```
+period 600            -> "not entitled to use the period 600, can only use a period among [10]"
+mitigation_timeout    -> "not entitled to use a mitigation timeout different from 10"
+```
+
+5-per-10s stops a script hammering the endpoint, but a patient attacker pacing
+at 4 requests per 10 seconds can still push ~34k leads/day into Slack and the
+team WhatsApp group. Closing that needs a paid plan (Pro or above), which
+unlocks longer periods and mitigation timeouts — then set 5 per 10 minutes,
+block 1 hour:
+
+```bash
+source ~/.cloudflare/wizva.env
+curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/91adbd2c0a44e6bb5ba75c9a222f5d3e/rulesets/phases/http_ratelimit/entrypoint" \
+  -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" \
+  -d '{"rules":[{"action":"block","description":"lead-intake-limit","expression":"(http.request.uri.path eq \"/api/lead\")","ratelimit":{"characteristics":["ip.src","cf.colo.id"],"period":600,"requests_per_period":5,"mitigation_timeout":3600}}]}'
+```
 
 Second layer, already in place: `submit_web_lead` uses
 `ON CONFLICT (mobile_number, project) DO NOTHING`, so repeat submissions from one

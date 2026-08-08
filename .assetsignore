@@ -1,9 +1,13 @@
+.git
+.github
+.DS_Store
+.wrangler
+node_modules
+.dev.vars
+.gitignore
+.assetsignore
 src
 wrangler.jsonc
-.assetsignore
-.gitignore
-.dev.vars
-.wrangler
 README.md
 crm-submit_web_lead.sql
 tools-gen-favicon.py
